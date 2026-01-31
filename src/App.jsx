@@ -3,6 +3,7 @@ import './App.scss'
 import Dock from './Components/Dock'
 import Nav from './Components/Nav'
 import MacWindow from './Components/Windows/MacWindow'
+import Github from './Components/Windows/Github'
 
 
 
@@ -11,7 +12,8 @@ const App = () => {
   <main>
     <Nav />
 <Dock />
-<MacWindow><p>Hello</p></MacWindow>
+{/* <MacWindow><p>Hello</p></MacWindow> */}
+<Github />
   </main>
   )
 }
