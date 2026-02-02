@@ -1,57 +1,168 @@
 .dock {
   display: flex;
   position: absolute;
-  bottom: 1rem;
+  bottom: 1.5rem;
   left: 50%;
   gap: 0.5rem;
-  transform: translate(-50%);
-  background-color: rgb(63, 63, 63, 0.395);
-  padding-block: 0.75rem;
-  border-radius: 0.75rem;
-  backdrop-filter: blur(5px);
+  transform: translateX(-50%);
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.75rem 1.25rem;
+  border-radius: 2rem;
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 
-  .icon {
-    aspect-ratio: 1/1;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  }
+  .dock-icon {
+    position: relative;
+    width: clamp(48px, 6vw, 64px);
+    height: clamp(48px, 6vw, 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 0.5rem;
 
-  .github {
-    background: linear-gradient(to bottom, rgb(242, 238, 238), rgb(9, 9, 9));
-  }
-  .notes {
-    background: linear-gradient(
-      to bottom,
-      rgb(255, 153, 28),
-      rgb(255, 179, 87)
-    );
-  }
-  .pdf {
-    background: linear-gradient(to bottom, rgb(245, 73, 73), rgb(242, 89, 89));
-  }
-  .cli {
-    background: linear-gradient(to bottom, rgb(23, 22, 22), rgb(198, 193, 193));
-  }
-  .spotify {
-    background: linear-gradient(to bottom, rgb(4, 92, 4), rgb(59, 193, 59));
-  }
-  .calendar {
-    background: linear-gradient(
-      to bottom,
-      rgb(54, 54, 241),
-      rgb(102, 102, 246)
-    );
-  }
-  .lick {
-    background: linear-gradient(to bottom, rgb(70, 2, 70), rgb(220, 44, 220));
-  }
-  .mail {
-    background: linear-gradient(to bottom, rgb(2, 2, 77), rgb(19, 19, 246));
-  }
-  .icon:hover {
-    transform: scale(1.25) translateY(-20%);
-  }
-  .icon:hover + .icon,
-  .icon:has(+ .icon:hover) {
-    transform: scale(1.1) translateY(-10%);
+    .icon-glass {
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.1) 100%
+        );
+        pointer-events: none;
+      }
+
+      img {
+        width: 65%;
+        height: 65%;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        position: relative;
+        z-index: 1;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .active-indicator {
+      position: absolute;
+      bottom: 0.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    &.active .icon-glass {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 24px rgba(255, 255, 255, 0.15);
+    }
+
+    &:hover {
+      transform: translateY(-12px) scale(1.15);
+      
+      .icon-glass {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+          0 0 32px rgba(255, 255, 255, 0.2);
+
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &:active {
+      transform: translateY(-8px) scale(1.05);
+    }
+
+    // Adjacent icon hover effect
+    &:has(+ .dock-icon:hover),
+    &:hover + .dock-icon {
+      transform: translateY(-6px) scale(1.08);
+    }
+
+    // Color-specific glass tints
+    &.spotify .icon-glass {
+      background: rgba(30, 215, 96, 0.2);
+      border-color: rgba(30, 215, 96, 0.3);
+    }
+
+    &.calendar .icon-glass {
+      background: rgba(0, 122, 255, 0.2);
+      border-color: rgba(0, 122, 255, 0.3);
+    }
+
+    &.cli .icon-glass {
+      background: rgba(142, 142, 147, 0.2);
+      border-color: rgba(142, 142, 147, 0.3);
+    }
+
+    &.github .icon-glass {
+      background: rgba(0, 0, 0, 0.25);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &.lick .icon-glass {
+      background: rgba(175, 82, 222, 0.2);
+      border-color: rgba(175, 82, 222, 0.3);
+    }
+
+    &.mail .icon-glass {
+      background: rgba(0, 122, 255, 0.2);
+      border-color: rgba(0, 122, 255, 0.3);
+    }
+
+    &.notes .icon-glass {
+      background: rgba(255, 204, 0, 0.2);
+      border-color: rgba(255, 204, 0, 0.3);
+    }
+
+    &.pdf .icon-glass {
+      background: rgba(255, 59, 48, 0.2);
+      border-color: rgba(255, 59, 48, 0.3);
+    }
   }
 }

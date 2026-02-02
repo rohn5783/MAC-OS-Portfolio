@@ -14,11 +14,95 @@ body,
 main {
   height: 100%;
   width: 100%;
-  background-image: url("./assets/mac.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  background: #0a0e27;
+  background-image: 
+    radial-gradient(ellipse at top, #1a1f3a 0%, #0a0e27 50%),
+    radial-gradient(ellipse at bottom, #0f1629 0%, #0a0e27 100%);
 }
+
+.background-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+}
+
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes nebulaFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(50px, -50px) scale(1.1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-30px, 30px) scale(0.9);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(30px, 50px) scale(1.05);
+    opacity: 0.65;
+  }
+}
+
+@keyframes shootStar {
+  0% {
+    top: -10px;
+    left: 20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    left: 80%;
+    opacity: 0;
+  }
+}
+
+@keyframes dustFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(20px, -20px);
+    opacity: 0.6;
+  }
+}
+
+nav {
+  position: relative;
+  z-index: 100;
+}
+
+.dock {
+  position: relative;
+  z-index: 100;
+}
+
 
 body {
   background-color: black;
@@ -28,19 +112,21 @@ body {
 .icon {
   width: clamp(36px, 5vw, 50px);
   height: clamp(36px, 5vw, 50px);
-  // margin: clamp(6px, 1.5vw, 10px);
   border-radius: 50%;
   background-color: white;
-
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 
   img {
     width: 60%;
     height: 60%;
     object-fit: contain;
     border-radius: 50%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 }

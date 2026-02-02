@@ -1,42 +1,51 @@
 import "./Nav.scss";
 import DateandTime from "./DateandTime";
-
 import React from 'react'
 
 const Nav = () => {
   return (
     <nav>
-<div className="left">
-    <div className="apple-icons">
-        <img src="public\navbar-icons\apple.svg" alt="apple-icons" />
-    </div>
-    <div className="nav-items">
-        <p>Rohit Pandey</p>
-
-    </div>
-    <div className="nav-items">
-        <p>File</p>
+      <div className="nav-left">
+        <div className="apple-logo">
+          <img src="/navbar-icons/apple.svg" alt="Apple" />
+        </div>
         
-    </div><div className="nav-items">
-        <p>Window</p>
+        <div className="menu-section">
+          <div className="menu-item">
+            <span className="menu-label">Rohit Pandey</span>
+          </div>
+        </div>
+
+        <div className="menu-section">
+          <div className="menu-item">
+            <span className="menu-label">File</span>
+          </div>
+          <div className="menu-item">
+            <span className="menu-label">Edit</span>
+          </div>
+          <div className="menu-item">
+            <span className="menu-label">View</span>
+          </div>
+          <div className="menu-item">
+            <span className="menu-label">Window</span>
+          </div>
+          <div className="menu-item">
+            <span className="menu-label">Help</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="nav-right">
+        <div className="status-icons">
+          <div className="status-item" title="Wi-Fi">
+            <img src="/navbar-icons/wifi.svg" alt="Wi-Fi" />
+          </div>
+        </div>
         
-    </div>
-    <div className="nav-items">
-        <p>Terminal</p>
-        
-    </div>
-</div>
-<div className="right">
-<div className="nav-icon">
-    <img src = "public\navbar-icons/wifi.svg"></img>
-</div>
-<div className="nav-items"> 
-    <DateandTime />
-</div>
-</div>
-
-
-
+        <div className="date-time-wrapper">
+          <DateandTime />
+        </div>
+      </div>
     </nav>
   )
 }
